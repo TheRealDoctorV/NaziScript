@@ -48,10 +48,10 @@ guidedMissile = require("guided_missile")
 local response = false
 local localVer = 1.10
 local currentVer
-async_http.init("raw.githubusercontent.com", "TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
+async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
     response = true
-    if localVer == currentVer then
+    if localVer ~= currentVer then
         util.toast("New Script version is available, update the lua to get the newest version.")
         menu.action(menu.my_root(), "Update Lua", {}, "", function()
             async_http.init('raw.githubusercontent.com','/TheRealDoctorV/Testing-script/main/NaziScript.lua',function(a)
@@ -74,7 +74,7 @@ repeat
     util.yield()
 until response
 
-util.toast("Welcome To NaziScript" ..localver .. "\n" .. "\n" .. "Keep your eyes peeled for updates...\n" .. "\n" .. "WARNING! Notifications aren't always accurate" .. "\n" .. "Changed by Doctor.V")
+-- util.toast("Welcome To NaziScript" ..localver "\n" .. "\n" .. "Keep your eyes peeled for updates...\n" .. "\n" .. "WARNING! Notifications aren't always accurate" .. "\n" .. "Changed by Doctor.V")
 
 util.log("░█████╗░██╗░░░██╗██████╗░██████╗░██╗░░░██╗██████╗░████████╗  ░██████╗░█████╗░██████╗░██╗██████╗░████████╗")
 util.log("██╔══██╗██║░░░██║██╔══██╗██╔══██╗██║░░░██║██╔══██╗╚══██╔══╝  ██╔════╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝")
