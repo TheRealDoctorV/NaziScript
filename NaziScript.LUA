@@ -1,52 +1,14 @@
---[[
-Huge Credits to all the people that provided us with public code <3
-I wouldn't of coded anything if it wasn't for these people.
-Sorry if I missed anyone xD.
 
-Kerami
-PANDA
-Mirror
-Bunny
-Ayrapheyr
-Ren
-HoppaC4
-Jayphen
-
-But fuck all these peaces of shit rotten stand devs XD imagine being a femboy. ewww.
-
-Prisuhm
-Lance
-Nowiry
-Sapphire
-Sainan
-Jade
-ICYPhoenix
-
-WE HAVE TAKEN OVER░ \☻/\☻/
-░░░░░░░░░░░░░░░░░░░▌░ ▌
-░░░░░░░░░░░░░░░░░░ / \░ / \
-░░░░░░░░░░░░░░░░░███████ ]▄▄▄▄▄▄▄▄▄-----------●
-░░░░░░░░░░░░▂▄▅█████████▅▄▃▂
-░░░░░░░░░░░I███████████████████].
-]]
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 util.keep_running()
 util.require_natives("natives-1663599433-uno")
 util.require_natives("natives-1640181023")
 util.require_natives("natives-1651208000")
 util.require_natives("natives-1663599433")
 guidedMissile = require("guided_missile")
--- local version = 16
--- local a=6.3;if not dev_mode then 
---     async_http.init("raw.githubusercontent.com","/TheRealDoctorV/Testing-script/main/NaziScript.LUA",function(b)
---         currentVer=tonumber(b)response=true;if a~=currentVer then 
---             menu.action(menu.my_root(),"Update",{"updatecurrupt"},"If it still says update when its been updated just ignore it until you see my change logs in my server.",function()
---                 util.toast("New Version found")async_http.init('raw.githubusercontent.com','/TheRealDoctorV/Testing-script/main/NaziScript.LUA',function(c)
---                     local d=select(2,load(c))if d then util.toast("Update failed to download")return end;local e=io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")e:write(c)e:close()
---                         util.toast("Update finished")util.stop_script()end)async_http.dispatch()end)end end,function()response=true end)async_http.dispatch()repeat util.yield()until response end
+
 
 local response = false
-local localVer = 1.13
+local localVer = 1.15
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -60,8 +22,6 @@ async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/mai
                     util.toast("Script failed to download. Please try again later. If this continues to happen then manually update via github.")
                 return end
                 local n = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")n:write(a)n:close()
-               -- f:write(a)
-               -- f:close()
                 util.toast("Successfully updated Script. Restarting Script... :)")
                 util.restart_script()
             end)
@@ -73,26 +33,8 @@ async_http.dispatch()
 repeat 
     util.yield()
 until response
-
--- util.toast("Welcome To NaziScript" ..localver "\n" .. "\n" .. "Keep your eyes peeled for updates...\n" .. "\n" .. "WARNING! Notifications aren't always accurate" .. "\n" .. "Changed by Doctor.V")
-
-util.log("░█████╗░██╗░░░██╗██████╗░██████╗░██╗░░░██╗██████╗░████████╗  ░██████╗░█████╗░██████╗░██╗██████╗░████████╗")
-util.log("██╔══██╗██║░░░██║██╔══██╗██╔══██╗██║░░░██║██╔══██╗╚══██╔══╝  ██╔════╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝")
-util.log("██║░░╚═╝██║░░░██║██████╔╝██████╔╝██║░░░██║██████╔╝░░░██║░░░  ╚█████╗░██║░░╚═╝██████╔╝██║██████╔╝░░░██║░░░")
-util.log("██║░░██╗██║░░░██║██╔══██╗██╔══██╗██║░░░██║██╔═══╝░░░░██║░░░  ░╚═══██╗██║░░██╗██╔══██╗██║██╔═══╝░░░░██║░░░")
-util.log("╚█████╔╝╚██████╔╝██║░░██║██║░░██║╚██████╔╝██║░░░░░░░░██║░░░  ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░")
-util.log("░╚════╝░░╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚═════╝░╚═╝░░░░░░░░╚═╝░░░  ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░")
-util.log("▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒")
-util.log("▒▒████▄▒▒▒▄▄▄▄▄▄▄▒▒▒▄████▒▒")
-util.log("▒▒▒▒▒▀▀▒▄█████████▄▒▀▀▒▒▒▒▒")
-util.log("▒▒▒▒▒▒▒█████████████▒▒▒▒▒▒▒")
-util.log("▒▒▒▒▒▒▒██▀▀▀███▀▀▀██▒▒▒▒▒▒▒")
-util.log("▒▒▒▒▒▒▒██▒▒▒███▒▒▒██▒▒▒▒▒▒▒")
-util.log("▒▒▒▒▒▒▒█████▀▄▀█████▒▒▒▒▒▒▒")
-util.log("▒▒▒▒▒▒▒▒▒▒███████▒▒▒▒▒▒▒▒▒▒")
-util.log("▒▒▒▒▄▄▄██▒▒█▀█▀█▒▒██▄▄▄▒▒▒▒")
-util.log("▒▒▒▒▀▀██▒▒▒▒▒▒▒▒▒▒▒██▀▀▒▒▒▒")
-util.log("▒▒▒▒▒▒▀▀▒▒▒▒▒▒▒▒▒▒▒▀▀▒▒▒▒▒▒")
+-- util.toast("Welcome To NaziScript version:" .. localVer() .. "\n" .. "Keep your eyes peeled for updates...\n" .. "\n" .. "WARNING! Notifications aren't always accurate" .. "\n" .. "Changed by Doctor.V")
+util.toast("Hello," .. SOCIALCLUB.SC_ACCOUNT_INFO_GET_NICKNAME() .. "! \nWelcome To NaziScript!""\nCurrent Version:" .. localVer .. "") 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     local translations = {}
