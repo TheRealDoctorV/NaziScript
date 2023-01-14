@@ -59,9 +59,9 @@ async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/mai
                 if err then
                     util.toast("Script failed to download. Please try again later. If this continues to happen then manually update via github.")
                 return end
-                local f = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH, "wb")
-                f:write(a)
-                f:close()
+                local f = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")f:write(a)f:close()
+               -- f:write(a)
+               -- f:close()
                 util.toast("Successfully updated Script. Restarting Script... :)")
                 util.restart_script()
             end)
