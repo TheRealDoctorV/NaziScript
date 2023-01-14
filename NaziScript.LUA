@@ -1,4 +1,3 @@
-
 util.keep_running()
 util.require_natives("natives-1663599433-uno")
 util.require_natives("natives-1640181023")
@@ -8,7 +7,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.16
+local localVer = 1.17
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -23,7 +22,6 @@ async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/mai
                 return end
                 local n = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")n:write(a)n:close()
                 util.toast("Successfully updated Script. Restarting Script... :)")
-				wait(5)
                 util.restart_script()
             end)
             async_http.dispatch()
@@ -13971,34 +13969,7 @@ menu.toggle_loop(self, "Stealth Vehicle Godmode Off", {}, "Turns off Godmode for
     ENTITY.SET_ENTITY_PROOFS(entities.get_user_vehicle_as_handle(), false, false, false, false, false, 0, 0, false)
     end, function() ENTITY.SET_ENTITY_PROOFS(PED.GET_VEHICLE_PED_IS_IN(players.user(), true), true, true, true, true, true, 0, 0, true)
 end)
-
-menu.action(menu.my_root(), "Changed by Doctor.G", {"none"}, "", function()
-end)
-
 local detections = menu.list(menu.my_root(), "Modder Detections", {}, "")
-
--- menu.action(menu.my_root(), "Yeet Roulette", {"yeetroulette"}, "Take a chance by instantly sending yourself to desktop or use the Restart GTA V Option.", function()
---     local pick = math.random(6)
---     if pick == 4 then 
---         util.log("You loose.")
---         menu.show_command_box("say " .. "I loose.")
---         menu.trigger_commands("autoenter")
---         util.yield(200)
---         menu.trigger_commands("autoenter")
---         ENTITY.APPLY_FORCE_TO_ENTITY(0, 1, 0, 0, 0, 0, 0, 0, 0, true, true, true, true, true)
---     else
---         util.toast("Lucky Bastard ;)")
--- 		menu.show_command_box("say " .. "I got lucky ;)")
---         menu.trigger_commands("autoenter")
---         util.yield(200)
---         menu.trigger_commands("autoenter")
---     end
--- end)
-
--- menu.action(menu.my_root(), "Restart GTA V", {"restartgta"}, "Restarts your game in singleplayer, closes it in Online. You will need to reinject (duh).", function(on_click)
---     MISC.RESTART_GAME("E574A662ACAEFBB1")
--- end)
-
 
 
 local autohost = menu.list(detections, "Host Detection", {}, "")
@@ -14397,6 +14368,9 @@ menu.toggle_loop(detsuperd, "Super Drive Auto Kick Them Out", {}, "Detects if th
             break
         end
     end
+end)
+
+menu.action(menu.my_root(), "Changed by Doctor.G", {"none"}, "", function()
 end)
 
 --------------------------------------
