@@ -33,7 +33,7 @@ repeat
     util.yield()
 until response
 
-util.toast("Hello," .. SOCIALCLUB.SC_ACCOUNT_INFO_GET_NICKNAME() .. "! \nWelcome To NaziScript!""\nCurrent Version:" .. localVer .. "\n Newest Version:" .. currentVer .. "") 
+util.toast("Hello," .. SOCIALCLUB.SC_ACCOUNT_INFO_GET_NICKNAME() .. "! \nWelcome To NaziScript!""\nCurrent Version:" .. localVer .. "\nNewest Version:" .. currentVer .. "") 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     local translations = {}
