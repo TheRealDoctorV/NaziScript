@@ -46,7 +46,7 @@ guidedMissile = require("guided_missile")
 --                         util.toast("Update finished")util.stop_script()end)async_http.dispatch()end)end end,function()response=true end)async_http.dispatch()repeat util.yield()until response end
 
 local response = false
-local localVer = 1.10
+local localVer = 1.12
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -14029,6 +14029,9 @@ menu.toggle_loop(self, "Stealth Vehicle Godmode Off", {}, "Turns off Godmode for
     end, function() ENTITY.SET_ENTITY_PROOFS(PED.GET_VEHICLE_PED_IS_IN(players.user(), true), true, true, true, true, true, 0, 0, true)
 end)
 
+menu.action(menu.my_root(), "Changed by Doctor.F", {"none"}, "", function()
+end)
+
 local detections = menu.list(menu.my_root(), "Modder Detections", {}, "")
 
 -- menu.action(menu.my_root(), "Yeet Roulette", {"yeetroulette"}, "Take a chance by instantly sending yourself to desktop or use the Restart GTA V Option.", function()
@@ -14053,8 +14056,7 @@ local detections = menu.list(menu.my_root(), "Modder Detections", {}, "")
 --     MISC.RESTART_GAME("E574A662ACAEFBB1")
 -- end)
 
-menu.action(menu.my_root(), "Changed by Doctor.V", {"none"}, "", function()
-end)
+
 
 local autohost = menu.list(detections, "Host Detection", {}, "")
 
