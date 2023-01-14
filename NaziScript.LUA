@@ -7,7 +7,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.18 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.19 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -21,7 +21,7 @@ async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/mai
                     util.toast("Script failed to download. Please try again later. If this continues to happen then manually update via github.")
                 return end
                 local n = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")n:write(a)n:close()
-                util.toast("Successfully updated Script. Please Restart :)")
+                util.toast("Successfully updated Script. Please Restart the script.")
                 util.stop_script()
             end)
             async_http.dispatch()
@@ -14370,7 +14370,7 @@ menu.toggle_loop(detsuperd, "Super Drive Auto Kick Them Out", {}, "Detects if th
     end
 end)
 
-menu.action(menu.my_root(), "Changed by Doctor.G", {"none"}, "", function()
+menu.action(menu.my_root(), "Changed by Doctor.V", {"none"}, "", function()
 end)
 
 --------------------------------------
