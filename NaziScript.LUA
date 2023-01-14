@@ -74,7 +74,7 @@ repeat
     util.yield()
 until response
 
--- util.toast("Welcome To NaziScript 1.3.9\n" .. "\n" .. "Keep your eyes peeled for updates...\n" .. "\n" .. "WARNING! Notifications aren't always accurate" .. "\n" .. "Changed by Doctor.V")
+util.toast("Welcome To NaziScript" ..localver .. "\n" .. "\n" .. "Keep your eyes peeled for updates...\n" .. "\n" .. "WARNING! Notifications aren't always accurate" .. "\n" .. "Changed by Doctor.V")
 
 util.log("░█████╗░██╗░░░██╗██████╗░██████╗░██╗░░░██╗██████╗░████████╗  ░██████╗░█████╗░██████╗░██╗██████╗░████████╗")
 util.log("██╔══██╗██║░░░██║██╔══██╗██╔══██╗██║░░░██║██╔══██╗╚══██╔══╝  ██╔════╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝")
