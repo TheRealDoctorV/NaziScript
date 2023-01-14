@@ -7,7 +7,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.17
+local localVer = 1.17 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
