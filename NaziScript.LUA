@@ -46,7 +46,7 @@ guidedMissile = require("guided_missile")
 --                         util.toast("Update finished")util.stop_script()end)async_http.dispatch()end)end end,function()response=true end)async_http.dispatch()repeat util.yield()until response end
 
 local response = false
-local localVer = 1.00
+local localVer = 1.10
 local currentVer
 async_http.init("raw.githubusercontent.com", "TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
