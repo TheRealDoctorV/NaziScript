@@ -46,7 +46,7 @@ guidedMissile = require("guided_missile")
 --                         util.toast("Update finished")util.stop_script()end)async_http.dispatch()end)end end,function()response=true end)async_http.dispatch()repeat util.yield()until response end
 
 local response = false
-local localVer = 1.12
+local localVer = 1.13
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -14029,7 +14029,7 @@ menu.toggle_loop(self, "Stealth Vehicle Godmode Off", {}, "Turns off Godmode for
     end, function() ENTITY.SET_ENTITY_PROOFS(PED.GET_VEHICLE_PED_IS_IN(players.user(), true), true, true, true, true, true, 0, 0, true)
 end)
 
-menu.action(menu.my_root(), "Changed by Doctor.F", {"none"}, "", function()
+menu.action(menu.my_root(), "Changed by Doctor.G", {"none"}, "", function()
 end)
 
 local detections = menu.list(menu.my_root(), "Modder Detections", {}, "")
