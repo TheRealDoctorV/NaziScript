@@ -36,16 +36,45 @@ util.require_natives("natives-1640181023")
 util.require_natives("natives-1651208000")
 util.require_natives("natives-1663599433")
 guidedMissile = require("guided_missile")
+-- local version = 16
+-- local a=6.3;if not dev_mode then 
+--     async_http.init("raw.githubusercontent.com","/TheRealDoctorV/Testing-script/main/NaziScript.LUA",function(b)
+--         currentVer=tonumber(b)response=true;if a~=currentVer then 
+--             menu.action(menu.my_root(),"Update",{"updatecurrupt"},"If it still says update when its been updated just ignore it until you see my change logs in my server.",function()
+--                 util.toast("New Version found")async_http.init('raw.githubusercontent.com','/TheRealDoctorV/Testing-script/main/NaziScript.LUA',function(c)
+--                     local d=select(2,load(c))if d then util.toast("Update failed to download")return end;local e=io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")e:write(c)e:close()
+--                         util.toast("Update finished")util.stop_script()end)async_http.dispatch()end)end end,function()response=true end)async_http.dispatch()repeat util.yield()until response end
 
-local a=6.3;if not dev_mode then 
-    async_http.init("raw.githubusercontent.comm1","/Millerrrrrrrrrr/Currupt-Script/main/Currupt Script/CurruptScriptVersion.lua",function(b)
-        currentVer=tonumber(b)response=true;if a~=currentVer then 
-            menu.action(menu.my_root(),"Update",{"updatecurrupt"},"If it still says update when its been updated just ignore it until you see my change logs in my server.",function()
-                util.toast("New Version found")async_http.init('raw.githubusercontent.com','/Millerrrrrrrrrr/Currupt-Script/main/Currupt Script/Currupt Script.LUA',function(c)
-                    local d=select(2,load(c))if d then util.toast("Update failed to download")return end;local e=io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")e:write(c)e:close()
-                        util.toast("Update finished")util.stop_script()end)async_http.dispatch()end)end end,function()response=true end)async_http.dispatch()repeat util.yield()until response end
+local response = false
+local localVer = 1.00
+local currentVer
+async_http.init("raw.githubusercontent.com", "TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
+    currentVer = tonumber(output)
+    response = true
+    if localVer == currentVer then
+        util.toast("New Script version is available, update the lua to get the newest version.")
+        menu.action(menu.my_root(), "Update Lua", {}, "", function()
+            async_http.init('raw.githubusercontent.com','/TheRealDoctorV/Testing-script/main/NaziScript.lua',function(a)
+                local err = select(2,load(a))
+                if err then
+                    util.toast("Script failed to download. Please try again later. If this continues to happen then manually update via github.")
+                return end
+                local f = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH, "wb")
+                f:write(a)
+                f:close()
+                util.toast("Successfully updated Script. Restarting Script... :)")
+                util.restart_script()
+            end)
+            async_http.dispatch()
+        end)
+    end
+end, function() response = true end) 
+async_http.dispatch()
+repeat 
+    util.yield()
+until response
 
-util.toast("Welcome To NaziScript 1.3.9\n" .. "\n" .. "Keep your eyes peeled for updates...\n" .. "\n" .. "WARNING! Notifications aren't always accurate" .. "\n" .. "Changed by Doctor.V")
+-- util.toast("Welcome To NaziScript 1.3.9\n" .. "\n" .. "Keep your eyes peeled for updates...\n" .. "\n" .. "WARNING! Notifications aren't always accurate" .. "\n" .. "Changed by Doctor.V")
 
 util.log("░█████╗░██╗░░░██╗██████╗░██████╗░██╗░░░██╗██████╗░████████╗  ░██████╗░█████╗░██████╗░██╗██████╗░████████╗")
 util.log("██╔══██╗██║░░░██║██╔══██╗██╔══██╗██║░░░██║██╔══██╗╚══██╔══╝  ██╔════╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝")
@@ -1052,7 +1081,7 @@ else
 	util.register_file(resource_dir .. "bruhzowski.ytd")
 end
 
-local version = 16
+
 
 
 local colors = {
