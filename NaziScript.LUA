@@ -1,4 +1,5 @@
 util.keep_running()
+util.require_natives("natives-1660775568")
 util.require_natives("natives-1663599433-uno")
 util.require_natives("natives-1640181023")
 util.require_natives("natives-1651208000")
@@ -7,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.19 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.20 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -389,7 +390,7 @@ local fake_pickup_types <const> = {
 players.on_join(function(player_id)
 
 
-	menu.divider(menu.player_root(player_id), "Currupt Script")
+	menu.divider(menu.player_root(player_id), "NaziScript")
 
     local trolling_net_list <const> = menu.list(menu.player_root(player_id), "Extra Trolling")
     menu.divider(trolling_net_list, "Extra Trolling")
@@ -8854,8 +8855,12 @@ function spawn_buzzard(pid, gunner_weapon, collision)
         kick = menu.list(menu.player_root(pid), "Kicks", {}, "Network Bail", function(); end)
 
         menu.action(kick, "Blast Kick", {"blast"}, "Blocks the player join reaction then uses buttplug kick", function()
-        notification("Blast kick sent to " .. PLAYER.GET_PLAYER_NAME(pids), colors.red)
+        notification("Blast kick sent to: " .. PLAYER.GET_PLAYER_NAME(pid), colors.black)
+		util.yield(1000)
             menu.trigger_commands("historyblock " .. players.get_name(pid))
+            menu.trigger_commands("track" .. players.get_name(pid))
+			util.yield(1000)
+			util.toast("Blocked and kicked")
             menu.trigger_commands("buttplug" .. players.get_name(pid))
     	end, nil, nil, COMMANDPERM_AGGRESSIVE)
 
@@ -9334,7 +9339,7 @@ end)
         ENTITY.SET_ENTITY_COORDS_NO_OFFSET(PLAYER.PLAYER_PED_ID(), pos['x'], pos['y'], pos['z'], true, false, false)
 	end)
 
-    local drops = menu.list(frienm, "Currupt Drops", {}, "")
+    local drops = menu.list(frienm, "NaziDrops", {}, "")
 
     menu.action(drops, "Give All Collectibles", {"collects"}, "", function()
         menu.trigger_commands("givecollectibles" .. players.get_name(pid))
@@ -9453,7 +9458,7 @@ end)
     end, nil, nil, COMMANDPERM_FRIENDLY)
 
 	menu.action(frienm, "Spectate", {"spec"}, "", function()
-    	notification("Spectating " .. PLAYER.GET_PLAYER_NAME(pids), colors.red)
+    	notification("Spectating " .. PLAYER.GET_PLAYER_NAME(pid), colors.red)
 		menu.trigger_commands("spectate" .. PLAYER.GET_PLAYER_NAME(pid))
 		local hash = util.joaat("baller")
 		local PlayerCoords = ENTITY.GET_ENTITY_COORDS(PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid), true)
@@ -14372,7 +14377,15 @@ end)
 
 menu.action(menu.my_root(), "Changed by Doctor.V", {"none"}, "", function()
 end)
+commandalias = menu.list(menu.my_root(), "Commands", {}, "", function(); end)
 
+menu.action(commandalias, ("Reapir"), {"fix"}, ("Quick Fix"), function()
+   local vehicle = get_player_veh(pid,true)
+		if vehicle then
+			VEHICLE.SET_VEHICLE_FIXED(vehicle)
+		end
+
+end)
 --------------------------------------
 
 focusref = {}
@@ -15579,3 +15592,4 @@ end
 util.on_stop(function()
 	notification("Later pussy (Yawn)", colors.red)
 end)
+
