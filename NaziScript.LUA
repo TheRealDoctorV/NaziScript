@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.15
+local localVer = 1.16
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -23,6 +23,7 @@ async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/mai
                 return end
                 local n = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")n:write(a)n:close()
                 util.toast("Successfully updated Script. Restarting Script... :)")
+				wait(5)
                 util.restart_script()
             end)
             async_http.dispatch()
@@ -33,8 +34,8 @@ async_http.dispatch()
 repeat 
     util.yield()
 until response
--- util.toast("Welcome To NaziScript version:" .. localVer() .. "\n" .. "Keep your eyes peeled for updates...\n" .. "\n" .. "WARNING! Notifications aren't always accurate" .. "\n" .. "Changed by Doctor.V")
-util.toast("Hello," .. SOCIALCLUB.SC_ACCOUNT_INFO_GET_NICKNAME() .. "! \nWelcome To NaziScript!""\nCurrent Version:" .. localVer .. "") 
+
+util.toast("Hello," .. SOCIALCLUB.SC_ACCOUNT_INFO_GET_NICKNAME() .. "! \nWelcome To NaziScript!""\nCurrent Version:" .. localVer .. "\n Newest Version:" .. currentVer .. "") 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     local translations = {}
