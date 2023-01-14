@@ -7,7 +7,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.17 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.18 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -21,8 +21,8 @@ async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/mai
                     util.toast("Script failed to download. Please try again later. If this continues to happen then manually update via github.")
                 return end
                 local n = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")n:write(a)n:close()
-                util.toast("Successfully updated Script. Restarting Script... :)")
-                util.restart_script()
+                util.toast("Successfully updated Script. Please Restart :)")
+                util.stop_script()
             end)
             async_http.dispatch()
         end)
@@ -4259,7 +4259,7 @@ notification("Spawn", colors.green)
 end)
 
 island_block = 0
-menu.toggle(funfun, "Sky Island", {""}, "", function(sky_island)
+menu.toggle(funfun, "Sky Island", {"skyisland"}, "", function(sky_island)
     local c = {}
 	
     c.x = 0
