@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.27 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.30 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -3098,7 +3098,7 @@ end)
 		end
 		util.toast("Gobbled all pickups nom nom!")
 		util.toast("Fucked Everything off " .. ct .. " Entities removed. :)")
-		notification("Shit cleaned nom nom > " .. ct .. "Entities", colors.green)
+		notification("Shit cleaned nom nom > " .. ct .. "Entities", colors.black)
 			for k,ent in pairs(entities.get_all_pickups_as_handles()) do
 				ENTITY.SET_ENTITY_AS_MISSION_ENTITY(ent, false, false)
 				entities.delete_by_handle(ent)
@@ -9257,7 +9257,7 @@ end)
 		end
 	end, nil, nil, COMMANDPERM_FRIENDLY)
 
-	menu.action(frienm,"Currupt boost", {"curruptboost"}, "Sets max speed of vehicle to 9999999 better for bikes",function()
+	menu.action(frienm,"NaziBoost", {"naziboost"}, "Sets max speed of vehicle to 9999999 better for bikes",function()
 		local vehicle = get_player_veh(pid,true)
 		if vehicle then
 			VEHICLE.MODIFY_VEHICLE_TOP_SPEED(vehicle, 9999999) 
