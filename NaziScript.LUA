@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.25 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.26 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -2539,7 +2539,7 @@ local chaos, gravity, speed = false, true, 100
 		end
 	end)
 
-	menu.action(custselc, "Give RP Steadily", {"giverpto"}, "", function()
+	menu.toggle(custselc, "Give RP Steadily", {"giverpto"}, "", function()
 		for pids = 0, 31 do
 			if excludeselected then
 				if pids ~= players.user() and not selectedplayer[pids] and players.exists(pids) then
