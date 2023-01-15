@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.22 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.23 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -9264,11 +9264,11 @@ end)
 	end, nil, nil, COMMANDPERM_FRIENDLY)
 
 	menu.action(frienm,"Repair", {"repair"}, "Repairs player's vehicle. Note: It will lag them a bit if you hold the toggle on", function()
-		local vehicle = get_player_veh(pid,true)
-		if vehicle then
-			VEHICLE.SET_VEHICLE_FIXED(vehicle)
-		end
-	end, nil, nil, COMMANDPERM_FRIENDLY)
+		util.toast("Fixing Card")
+		util.yield(200)
+		menu.trigger_commands("fixvehicle")
+   end)
+
 
 	menu.action(frienm,"GodVeh On", {"invon"}, "Gives invincibility to player's vehicle",function()
 		local vehicle = get_player_veh(pid,true)
@@ -14387,11 +14387,9 @@ end)
 commandalias = menu.list(menu.my_root(), "Commands", {}, "", function(); end)
 
 menu.action(commandalias, ("Reapir"), {"fix"}, ("Quick Fix"), function()
-   local vehicle = get_player_veh(pid,true)
-		if vehicle then
-			VEHICLE.SET_VEHICLE_FIXED(vehicle)
-		end
-
+util.yield(10)
+menu.trigger_commands("repairvehicle")
+util.toast("Fixed!")
 end)
 --------------------------------------
 
