@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.26 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.27 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -15607,4 +15607,3 @@ end
 util.on_stop(function()
 	notification("Later pussy (Yawn)", colors.red)
 end)
-
