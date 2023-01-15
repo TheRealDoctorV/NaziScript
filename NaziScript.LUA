@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.23 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.25 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -52,6 +52,14 @@ util.create_tick_handler(function()
         util.yield(200)
     end
 end)
+
+local function show_busyspinner(text)
+    HUD.BEGIN_TEXT_COMMAND_BUSYSPINNER_ON("STRING")
+    HUD.ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(text)
+    HUD.END_TEXT_COMMAND_BUSYSPINNER_ON(2)
+end
+-- HUD.BUSYSPINNER_OFF() -- Use to end Spinnner
+-- show_busyspinner(text) -- {TEXT - String } -- Displays as text or string
 
 local aalib = require("aalib")
 local PlaySound = aalib.play_sound
@@ -14381,6 +14389,8 @@ menu.toggle_loop(detsuperd, "Super Drive Auto Kick Them Out", {}, "Detects if th
         end
     end
 end)
+
+
 
 menu.action(menu.my_root(), "Changed by Doctor.V", {"none"}, "", function()
 end)
