@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.20 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.21 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -1052,11 +1052,11 @@ function notification(message, color)
 	end
 	util.BEGIN_TEXT_COMMAND_THEFEED_POST(message)
 	if color == colors.red or color == colors.red then
-		subtitle = "~u~Loaded"
+		subtitle = "~u~Reloaded"
 	elseif color == colors.black then
-		subtitle = "~c~Loaded"
+		subtitle = "~g~Reloaded"
 	else
-		subtitle = "~r~Loaded"
+		subtitle = "~g~Reloaded"
 	end
 	HUD.END_TEXT_COMMAND_THEFEED_POST_MESSAGETEXT(picture, "Mike", true, 4, "Nazi-Script", subtitle)
 
@@ -4274,6 +4274,7 @@ menu.toggle(funfun, "Sky Island", {"skyisland"}, "", function(sky_island)
 	util.toast("Sky Island Spawned")
 	else
 	entities.delete_by_handle(island_block)
+	-- menu.trigger_commands("undoteleport")
 	PED.SET_PED_COORDS_KEEP_VEHICLE(players.user_ped(), -4.7, 8.5, 71.01)
 	util.toast("Sky Island Removed")
 	end
@@ -4919,15 +4920,19 @@ GenerateFeatures = function(pid)
 
 	menu.toggle(troll_sub_vehicle_tab, "Stealth Remote Control", {"stealthremote"}, "Enters there vehicle without them knowing and exits the same way. Note: It will disable them using that car until spawned again.", function(on_toggle)
 	if on_toggle then
-		menu.trigger_commands("tpmyspot")
+	-- menu.trigger_commands("tpmyspot")
 		menu.trigger_commands("invisibility" .. " On")
-                  	menu.trigger_commands("otr")
+		menu.trigger_commands("otr")
+		util.toast("Player is now invisible and OTF")
+		util.yield(2000)
 		menu.trigger_commands("tpveh" .. players.get_name(pid))
+		util.toast("Teleported to vehicle \nAttempting Remote-Control!")
+		util.yield(2000)
 		menu.trigger_commands("rc" .. " On")
 	else
-                  	menu.trigger_commands("otr")
 		menu.trigger_commands("rc" .. " Off")
 		menu.trigger_commands("undoteleport")
+        menu.trigger_commands("otr")
 		menu.trigger_commands("invisibility" .. " Off")
 		end
 	end)
@@ -4935,10 +4940,10 @@ GenerateFeatures = function(pid)
 
     local plates = menu.list(troll_sub_vehicle_tab, "Fuck Plates", {}, "")
 
-	menu.action(plates,"Currupt Plate Text", {"curruptplate"}, "curruptplate", function()
+	menu.action(plates,"Nazi Plate Text", {"naziplate"}, "naziplate", function()
 		local vehicle = get_player_veh(pid,true)
 		if vehicle then
-			VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(vehicle, "Currupt")
+			VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(vehicle, "NAZI")
 		end
     end, nil, nil, COMMANDPERM_AGGRESSIVE)
 
