@@ -3071,7 +3071,7 @@ end)
 		end
 	end)
 
-	menu.action(protex, "Super Clean Shit", {"clean"}, "Attempt to fuck every single entity without exception. Not recommended but fuck it", function(on_click)
+	menu.action(protex, "Super Clean Shit", {"nazitotalclean"}, "Attempt to fuck every single entity without exception. Not recommended but fuck it", function(on_click)
 		local ct = 0
 		for k,ent in pairs(entities.get_all_vehicles_as_handles()) do
 			ENTITY.SET_ENTITY_AS_MISSION_ENTITY(ent, false, false)
