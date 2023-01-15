@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.21 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.22 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -4922,18 +4922,20 @@ GenerateFeatures = function(pid)
 	if on_toggle then
 	-- menu.trigger_commands("tpmyspot")
 		menu.trigger_commands("invisibility" .. " On")
-		menu.trigger_commands("otr")
+		menu.trigger_commands("otr" .. " On")
 		util.toast("Player is now invisible and OTF")
 		util.yield(2000)
 		menu.trigger_commands("tpveh" .. players.get_name(pid))
 		util.toast("Teleported to vehicle \nAttempting Remote-Control!")
 		util.yield(2000)
 		menu.trigger_commands("rc" .. " On")
+		util.toast("Remote-Control Granted on: " .. players.get_name(pid)"")
 	else
 		menu.trigger_commands("rc" .. " Off")
 		menu.trigger_commands("undoteleport")
-        menu.trigger_commands("otr")
+        menu.trigger_commands("otr" .. " Off")
 		menu.trigger_commands("invisibility" .. " Off")
+		util.toast("Back to normal")
 		end
 	end)
 
@@ -6887,12 +6889,12 @@ end, nil, nil, COMMANDPERM_AGGRESSIVE)
 
 	killgods = menu.list(griefing, "Kill Godmode Shit", {}, "", function(); end)
 
-	menu.action(killgods, "Kill Godmode Player V1", {"killgod"}, "", function()
+	menu.toggle(killgods, "Kill Godmode Player V1", {"killgod"}, "", function()
 		menu.trigger_commands("confuse" .. PLAYER.GET_PLAYER_NAME(pid))
 		menu.trigger_commands("explodeloop" .. PLAYER.GET_PLAYER_NAME(pid))
     	end, nil, nil, COMMANDPERM_AGGRESSIVE)
 
-menu.action(killgods, "Kill Godmode Player V2", {"killgodv2"}, "Note: this will not work if they have no ragdoll on", function()
+menu.toggle(killgods, "Kill Godmode Player V2", {"killgodv2"}, "Note: this will not work if they have no ragdoll on", function()
     local id = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
     local playerpos = ENTITY.GET_ENTITY_COORDS(id)
     playerpos.z = playerpos.z + 3
@@ -8861,10 +8863,10 @@ function spawn_buzzard(pid, gunner_weapon, collision)
 
         menu.action(kick, "Blast Kick", {"blast"}, "Blocks the player join reaction then uses buttplug kick", function()
         notification("Blast kick sent to: " .. PLAYER.GET_PLAYER_NAME(pid), colors.black)
-		util.yield(1000)
+		util.yield(300)
             menu.trigger_commands("historyblock " .. players.get_name(pid))
             menu.trigger_commands("track" .. players.get_name(pid))
-			util.yield(1000)
+			util.yield(300)
 			util.toast("Blocked and kicked")
             menu.trigger_commands("buttplug" .. players.get_name(pid))
     	end, nil, nil, COMMANDPERM_AGGRESSIVE)
