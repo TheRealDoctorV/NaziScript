@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.30 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.32 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -69,7 +69,7 @@ local SND_FILENAME<const> = 0x00020000
 resources_dir = filesystem.resources_dir() .. '\\curruptscript\\'
 
 if not filesystem.is_dir(resources_dir) then
-    notification("If Currupt Script is not installed properly. Some things will fail to load or break.")
+    notification("If NaziScript is not installed properly. Some things will fail to load or break.")
 end
 
 if not SCRIPT_SILENT_START then
@@ -853,7 +853,7 @@ function table.save(  tbl,filename )
             end
             if str ~= "" then
                stype = type( v )
-               -- handle value
+               -- handle value (check if table is good)
                if stype == "table" then
                   if not lookup[v] then
                      table.insert( tables,v )
@@ -3718,6 +3718,19 @@ end)
 ------------------------------------
 --Nuke
 ------------------------------------
+local function get_offset_from_gameplay_camera(distance)
+    local cam_rot = CAM.GET_GAMEPLAY_CAM_ROT(0)
+    local cam_pos = CAM.GET_GAMEPLAY_CAM_COORD()
+    local direction = v3.toDir(cam_rot)
+    local destination = 
+    { 
+        x = cam_pos.x + direction.x * distance, 
+        y = cam_pos.y + direction.y * distance, 
+        z = cam_pos.z + direction.z * distance 
+    }
+    return destination
+end
+
 
 function raycast_gameplay_cam(flag, distance)
     local ptr1, ptr2, ptr3, ptr4 = memory.alloc(), memory.alloc(), memory.alloc(), memory.alloc()
@@ -3749,8 +3762,9 @@ function raycast_gameplay_cam(flag, distance)
     return {p1, p2, p3, p4}
 end
 
+-- local function get_offset_from_gameplay_camera(distance)
 function direction()
-	local function get_offset_from_gameplay_camera(distance)
+	function get_offset_from_gameplay_camera(distance)
     local cam_rot = CAM.GET_GAMEPLAY_CAM_ROT(0)
     local cam_pos = CAM.GET_GAMEPLAY_CAM_COORD()
     local direction = v3.toDir(cam_rot)
@@ -3850,8 +3864,8 @@ local nuke_gun_root = menu.list(funfun, 'Nuke options', {}, '')
 --         end)
 --     end
 -- end)
--- 
--- 
+
+
 local function get_waypoint_pos2()
     if HUD.IS_WAYPOINT_ACTIVE() then
         local blip = HUD.GET_FIRST_BLIP_INFO_ID(8)
@@ -4925,10 +4939,16 @@ GenerateFeatures = function(pid)
 			end
 		end
 	end)
+	
+
+
+	
+	-- HUD.BUSYSPINNER_OFF() -- Use to end Spinnner
+	-- show_busyspinner(text) -- {TEXT - String } -- Displays as text or string
 
 	menu.toggle(troll_sub_vehicle_tab, "Stealth Remote Control", {"stealthremote"}, "Enters there vehicle without them knowing and exits the same way. Note: It will disable them using that car until spawned again.", function(on_toggle)
 	if on_toggle then
-	-- menu.trigger_commands("tpmyspot")
+	 -- menu.trigger_commands("tpmyspot")
 		menu.trigger_commands("invisibility" .. " On")
 		menu.trigger_commands("otr" .. " On")
 		util.toast("Player is now invisible and OTF")
@@ -4937,7 +4957,7 @@ GenerateFeatures = function(pid)
 		util.toast("Teleported to vehicle \nAttempting Remote-Control!")
 		util.yield(2000)
 		menu.trigger_commands("rc" .. " On")
-		util.toast("Remote-Control Granted on: " .. players.get_name(pid)"")
+		util.toast("Remote-Control Granted on: " .. players.get_name(pid) .."")
 	else
 		menu.trigger_commands("rc" .. " Off")
 		menu.trigger_commands("undoteleport")
@@ -15472,6 +15492,11 @@ menu.slider(funfun, "TP Backward Setting", {"tpbackwardss"}, "tpbackwardss", 1, 
 tpb_units = g
 end)
 
+
+menu.divider(funfun, "Yoinker")
+menu.action(funfun, "Yoink All Pickups", {"yoinkpickupsself"}, "", function()
+menu.trigger_commands("yoinkpickups".. PLAYER.GET_PLAYER_NAME(players.user()) .. "")
+end)
 ----------------------------------------------------------------------------------------------------------------
 
 
