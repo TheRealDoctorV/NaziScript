@@ -23,7 +23,8 @@ async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/mai
                 return end
                 local n = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")n:write(a)n:close()
                 util.toast("Successfully updated Script. Please Restart the script.")
-                util.stop_script()
+                util.restart_script()
+				util.yield(1000)
             end)
             async_http.dispatch()
         end)
