@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.32 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.35 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -23,7 +23,7 @@ async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/mai
                 return end
                 local n = io.open(filesystem.scripts_dir()..SCRIPT_RELPATH,"wb")n:write(a)n:close()
                 util.toast("Successfully updated Script. Please Restart the script.")
-                util.restart_script()
+                util.stop_script()
 				util.yield(1000)
             end)
             async_http.dispatch()
@@ -67,7 +67,7 @@ local PlaySound = aalib.play_sound
 local SND_ASYNC<const> = 0x0001
 local SND_FILENAME<const> = 0x00020000
 
-resources_dir = filesystem.resources_dir() .. '\\curruptscript\\'
+resources_dir = filesystem.resources_dir() .. '\\naziscript\\'
 
 if not filesystem.is_dir(resources_dir) then
     notification("If NaziScript is not installed properly. Some things will fail to load or break.")
@@ -898,7 +898,7 @@ function table.load( sfile )
 end
 -- END UTILITY FUNCTIONS
 
-store_dir = filesystem.store_dir() .. '\\Currupt\\'
+store_dir = filesystem.store_dir() .. '\\Nazi\\'
 if not filesystem.is_dir(store_dir) then
     filesystem.mkdirs(store_dir)
 end
@@ -916,21 +916,21 @@ function create_timer_entry(data)
     local this_timer_path = store_dir .. '\\' .. timer_name .. '.lua'
     local fmt_name = timer_name:gsub(' ', '')
     if all_timer_lists[timer_name] == nil then
-        local this_timer_root = menu.list(menu.my_root(), timer_name, {'Currupt' .. fmt_name}, timer_desc)
+        local this_timer_root = menu.list(menu.my_root(), timer_name, {'Nazi' .. fmt_name}, timer_desc)
         all_timer_lists[timer_name] = this_timer_root
         menu.toggle_loop(this_timer_root, "Run timer", {"runtimer" .. timer_name}, "", function(click_type)
             menu.trigger_commands(timer_commands)
             util.yield(timer_delay)
         end)
 
-        menu.text_input(this_timer_root, "Description", {"Curruptsetdesc" .. fmt_name}, "", function(on_input)
+        menu.text_input(this_timer_root, "Description", {"Nazisetdesc" .. fmt_name}, "", function(on_input)
             timer_desc = on_input
             data_copy['timer_desc'] = on_input
             table.save(data_copy, this_timer_path)
             menu.set_help_text(this_timer_root, timer_desc)
         end, timer_desc)
 
-        menu.text_input(this_timer_root, "Command(s)", {"Curruptsetcommands" .. fmt_name}, "The commands for this timer. You can specify multiple by putting semicolons in between each.", function(on_input)
+        menu.text_input(this_timer_root, "Command(s)", {"Nazisetcommands" .. fmt_name}, "The commands for this timer. You can specify multiple by putting semicolons in between each.", function(on_input)
             timer_commands = on_input
             data_copy['timer_commands'] = on_input
             table.save(data_copy, this_timer_path)
@@ -1289,7 +1289,7 @@ function upgrade_vehicle(player) --now my funky functions are useless :'( since 
 			end
 		end
 		VEHICLE.SET_VEHICLE_XENON_LIGHT_COLOR_INDEX(vehicle, 255, 0, 255)
-		VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(vehicle, "Currupt")
+		VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(vehicle, "Nazi")
 	end
 end
 
@@ -2692,7 +2692,7 @@ local chaos, gravity, speed = false, true, 100
 			if excludeselected then
 				if pids ~= players.user() and not selectedplayer[pids] and players.exists(pids) then
 					menu.trigger_commands("steamroll" .. PLAYER.GET_PLAYER_NAME(pids))
-					notificationn("Ha Currupt Crash has been sent to " .. PLAYER.GET_PLAYER_NAME(pids), colors.red)
+					notificationn("Ha Nazi Crash has been sent to " .. PLAYER.GET_PLAYER_NAME(pids), colors.red)
 				end
 			else
 				if pids ~= players.user() and selectedplayer[pids] and players.exists(pids) then
@@ -2766,7 +2766,7 @@ local chaos, gravity, speed = false, true, 100
 	end
 
 
-	protex = menu.list(menu.my_root(), "Net Shit", {"netshit"}, "", function(); end)
+	protex = menu.list(menu.my_root(), "Networking", {"netstuff"}, "", function(); end)
 
     	local pidsacam = menu.list(protex, "Anti Crash Camera", {}, "")
 
@@ -3108,7 +3108,7 @@ end)
 		end
 	end)
 
-menu.toggle_loop(protex, "Anti-Beast", {}, "Prevents you from being turned into the beast but will also stop the event for others.", function()
+menu.toggle_loop(protex, "Anti-Beast", {"nazienableantibeast"}, "Prevents you from being turned into the beast but will also stop the event for others.", function()
     if util.spoof_script("am_hunt_the_beast", SCRIPT.TERMINATE_THIS_THREAD) then
         util.toast("Hunt the beast script detected. Terminating script...")
     end
@@ -3255,7 +3255,7 @@ end)
 		end
 	end)
 
-	menu.divider(protex, "Currupt Protections")
+	menu.divider(protex, "Nazi Protections")
 
 	
 	menu.toggle(protex, "Toggle Block all Network Events", {}, "This breaks the game, so only leave it on if you are worried about an incoming modder attack", function(on_toggle)
@@ -3452,7 +3452,7 @@ end)
 
 menu.action(help2, "Commands B", {"help2"}, "", function()
     chat.send_message(
-        "/boost NAME /curruptboost NAME /resetacc NAME /repair NAME /invon NAME /invoff NAME",
+        "/boost NAME /naziboost NAME /resetacc NAME /repair NAME /invon NAME /invoff NAME",
         false, -- in team chat
         true, -- add to local history
         true  -- networked
@@ -3462,7 +3462,7 @@ end, nil, nil, COMMANDPERM_FRIENDLY)
 
 menu.toggle_loop(help2, "Commands B", {}, "", function(on_toggle)
     chat.send_message(
-        "/boost NAME /curruptboost NAME /resetacc NAME /repair NAME /invon NAME /invoff NAME",
+        "/boost NAME /Naziboost NAME /resetacc NAME /repair NAME /invon NAME /invoff NAME",
         false, -- in team chat
         true, -- add to local history
         true  -- networked
@@ -4278,9 +4278,9 @@ menu.slider(funfun, "Change seat", {"switchseat"}, "DriverSeat = -1 Passenger = 
 	PED.SET_PED_INTO_VEHICLE(ped, vehicle, seatnumber)
 end)
 
-menu.action(funfun, "test", {testtesttest}, "still just a test", function()
-notification("Spawn", colors.green)
-end)
+-- menu.action(funfun, "test", {testtesttest}, "still just a test", function()
+-- notification("Spawn", colors.green)
+-- end)
 
 island_block = 0
 menu.toggle(funfun, "Sky Island", {"skyisland"}, "", function(sky_island)
@@ -5074,7 +5074,7 @@ GenerateFeatures = function(pid)
 		end
     end, nil, nil, COMMANDPERM_FRIENDLY)
 
-	menu.action(mov_sub_vehicle_tab,"Currupt boost", {"curruptboosts"}, "Sets max speed of vehicle to 9999999 better for bikes",function()
+	menu.action(mov_sub_vehicle_tab,"Nazi boost", {"naziboosts"}, "Sets max speed of vehicle to 9999999 better for bikes",function()
 		local vehicle = get_player_veh(pid,true)
 		if vehicle then
 			VEHICLE.MODIFY_VEHICLE_TOP_SPEED(vehicle, 9999999) 
@@ -5101,7 +5101,7 @@ GenerateFeatures = function(pid)
                 end)
             end, nil, nil, COMMANDPERM_FRIENDLY)
 
-            	menu.action(mov_sub_vehicle_tab, 'Reverse Car', {'reversecars'}, "Note: Restart Currupt Script if you need to reset your own speed",function()
+            	menu.action(mov_sub_vehicle_tab, 'Reverse Car', {'reversecars'}, "Note: Restart Nazi Script if you need to reset your own speed",function()
     	notification("Reverse Car On " .. PLAYER.GET_PLAYER_NAME(pids), colors.green)
 	local vehicle = get_player_veh(pid,true)
             	local player_torques = 1000000
@@ -5112,7 +5112,7 @@ GenerateFeatures = function(pid)
                         NETWORK.NETWORK_REQUEST_CONTROL_OF_ENTITY(playerVehicle)
                         VEHICLE.SET_VEHICLE_CHEAT_POWER_INCREASE(playerVehicle, player_torque/1000000)
 	      VEHICLE.MODIFY_VEHICLE_TOP_SPEED(vehicle, -2147483647)
-                    util.toast("Restart Currupt Script To Reset Your Own Speed")
+                    util.toast("Restart NaziScript To Reset Your Own Speed")
                     end
                     return (player_torques ~= 1000000)
                 end)
@@ -8887,7 +8887,7 @@ function spawn_buzzard(pid, gunner_weapon, collision)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
-        crash = menu.list(menu.player_root(pid), "Crashes", {}, "Currupt Crash", function(); end)
+        crash = menu.list(menu.player_root(pid), "Crashes", {}, "Nazi Crash", function(); end)
         kick = menu.list(menu.player_root(pid), "Kicks", {}, "Network Bail", function(); end)
 
         menu.action(kick, "Blast Kick", {"blast"}, "Blocks the player join reaction then uses buttplug kick", function()
@@ -15501,10 +15501,10 @@ end)
 ----------------------------------------------------------------------------------------------------------------
 
 
-	menu.toggle(protex, "Rank 420", {"rank"}, "Note: If you save the profile with it toggled it will give you pemanant 420 rank", function(on_toggle)
-		notification("Setting Rank 420...", colors.red)
-		menu.trigger_commands("setrank" .. " 420")
-	end)
+-- 	menu.toggle(protex, "Rank 420", {"rank"}, "Note: If you save the profile with it toggled it will give you pemanant 420 rank", function(on_toggle)
+-- 		notification("Setting Rank 420...", colors.red)
+-- 		menu.trigger_commands("setrank" .. " 420")
+-- 	end)
 
 	menu.toggle(protex, "FPS Boost", {"fpsboost"}, "Wait a few seconds for 5-10 FPS Boost.", function(on_toggle)
 	if on_toggle then
@@ -15542,93 +15542,94 @@ end)
 		end
 	end)
 
-bountyloop = menu.list(protex, "Bounty Loops", {}, "", function(); end)
-
-
---coded by MrWall 
-
-util.show_corner_help("~w~Welcome to: ~r~Nazi Script \n~w~The jews must be ~g~GASSED!")
-
-function on_stp()
-	util.show_corner_help("~r~Unloaded ~o~ " .. SCRIPT_FILENAME .. "\n~s~Thanks for using ~p~:D")
-end
-
-
-local playerList = players.list(false, true, true)
-local notify = false
-local amount = {1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000}
-local randomamount = 10000
-
-
---Header
-menu.divider(bountyloop, "Bounty Loops")
-
---Waiting time
-delay = 30
-menu.slider(bountyloop, "Repeat Colldown", {"bdelay"}, "Set the time on how long the script waits to give the next player a bounty (time is in sec)", 10, 300, delay, 5, function(value)
-	delay = value
-end)
-
---Random Amount
-function random_pay()
-	while randomamount <= 10000  do
-		randomamount = amount[math.random(#amount)]
-		util.yield(delay * 100)
-	end
-	return randomamount 
-end
-
-menu.toggle(bountyloop, "Random payout¿", {}, "Set random pay bounty loops\n\nActive = random", function(d)
-	if d then
-		random_pay()
-	else
-		randomamount = 10000
-	end
-end)
-
-menu.toggle(bountyloop, "Notifications Off", {}, "By default notifications are turned OFF", function(on)
-	if on then
-		notify = true
-		util.show_corner_help("~p~Notifications ~g~On")
-	else
-		notify = false
-		util.show_corner_help("~p~Notifications ~r~Off")
-	end
-end)
-
---Bounty Toggle
-menu.toggle_loop(bountyloop, "Start Loops", {}, "Will get a random players and give them bounty on set time", function()
-	if #playerList > 0 then
-		randomPlayer = players.get_name(playerList[math.random(1, #playerList)])
-		menu.trigger_commands("bounty" .. randomPlayer .. " " .. randomamount)
-		if notify then
-			util.show_corner_help("~o~Bounty placed~y~... \n~r~$ ~w~= " .. randomamount)
-			if not util.BEGIN_TEXT_COMMAND_IS_THIS_HELP_MESSAGE_BEING_DISPLAYED("~p~Notifications ~g~On") then
-				util.show_corner_help("~o~Bounty placed~y~... \n~r~$ ~w~= " .. randomamount)
-			end
-		end
-			util.yield(delay * 1000)
-	else
-		util.show_corner_help("Lobby has ~r~no ~w~other ~o~players.\n\n~w~Consider ~g~joining ~w~a ~g~new one.")
-		util.yield(60000)
-	end
-end)
-
-enabled = false
-menu.toggle(bountyloop, "Infinite bountys Loop", {"infinibounty"}, "Places a 10k bounty on the entire session again and again.", function(on)
-    if on then
-        enabled = true
-    else
-        enabled = false
-    end
-end, false)
-
-while true do
-    if enabled then
-        menu.trigger_commands("bountyall 10000")
-    end
-    util.yield(10000)
-end
+-- bountyloop = menu.list(protex, "Bounty Loops", {}, "", function(); end)
+-- 
+-- 
+-- --coded by MrWall 
+-- 
+-- util.show_corner_help("~w~Welcome to: ~r~Nazi Script \n~w~Created by: Doctor.~r~V")
+-- 
+-- function on_stp()
+-- 	util.show_corner_help("~r~Unloaded ~o~ " .. SCRIPT_FILENAME .. "\n~s~Thanks for using ~p~:D")
+-- end
+-- 
+-- 
+-- local playerList = players.list(false, true, true)
+-- local notify = false
+-- local amount = {1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000}
+-- local randomamount = 10000
+-- 
+-- 
+-- --Header
+-- menu.divider(bountyloop, "Bounty Loops")
+-- 
+-- --Waiting time
+-- delay = 30
+-- menu.slider(bountyloop, "Repeat Colldown", {"bdelay"}, "Set the time on how long the script waits to give the next player a bounty (time is in sec)", 10, 300, delay, 5, function(value)
+-- 	delay = value
+-- end)
+-- 
+-- --Random Amount
+-- function random_pay()
+-- 	while randomamount <= 10000  do
+-- 		randomamount = amount[math.random(#amount)]
+-- 		util.yield(delay * 100)
+-- 	end
+-- 	return randomamount 
+-- end
+-- 
+-- menu.toggle(bountyloop, "Random payout", {}, "Set random pay bounty loops\n\nActive = random", function(d)
+-- 	if d then
+-- 		random_pay()
+-- 	else
+-- 		randomamount = 10000
+-- 	end
+-- end)
+-- 
+-- menu.toggle(bountyloop, "Notifications", {}, "By default notifications are turned off", function(on)
+-- 	if on then
+-- 		notify = true
+-- 		util.show_corner_help("Notifications ~g~On")
+-- 	else
+-- 		notify = false
+-- 		util.show_corner_help("Notifications ~r~Off")
+-- 	end
+-- end)
+-- 
+-- --Bounty Toggle
+-- menu.toggle_loop(bountyloop, "Start Loops", {}, "Will get a random players and give them bounty on set time", function()
+-- 	if #playerList > 0 then
+-- 		randomPlayer = players.get_name(playerList[math.random(1, #playerList)])
+-- 		menu.trigger_commands("bounty" .. randomPlayer .. " " .. randomamount)
+-- 		util.yield(1000)
+-- 		if notify then
+-- 			util.show_corner_help("~o~Bounty placed on~y~... ~o~" .. randomPlayer ..  "\n~r~$ ~w~= " .. randomamount .. "")
+-- 			if not util.BEGIN_TEXT_COMMAND_IS_THIS_HELP_MESSAGE_BEING_DISPLAYED("~p~Notifications ~g~On") then
+-- 				util.show_corner_help("~o~Bounty placed on~y~... ~o~" .. randomPlayer ..  "\n~r~$ ~w~= " .. randomamount .. "")
+-- 			end
+-- 		end
+-- 			util.yield(delay * 1000)
+-- 	else
+-- 		util.show_corner_help("Lobby has ~r~no ~w~other ~o~players.\n\n~w~Consider ~g~joining ~w~a ~g~new one.")
+-- 		util.yield(60000)
+-- 	end
+-- end)
+-- 
+-- enabled = false
+-- menu.toggle(bountyloop, "Infinite bountys Loop", {"infinibounty"}, "Places a 10k bounty on the entire session again and again.", function(on)
+--     if on then
+--         enabled = true
+--     else
+--         enabled = false
+--     end
+-- end, false)
+-- 
+-- while true do
+--     if enabled then
+--         menu.trigger_commands("bountyall 10000")
+--     end
+--     util.yield(10000)
+-- end
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 util.on_stop(function()
 	notification("Later pussy (Yawn)", colors.red)
