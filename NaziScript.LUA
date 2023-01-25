@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.42 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.45 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -67,7 +67,7 @@ local PlaySound = aalib.play_sound
 local SND_ASYNC<const> = 0x0001
 local SND_FILENAME<const> = 0x00020000
 
-resources_dir = filesystem.resources_dir() .. '\\curruptscript\\'
+resources_dir = filesystem.resources_dir() .. '\\naziscript\\'
 
 if not filesystem.is_dir(resources_dir) then
     notification("If NaziScript is not installed properly. Some things will fail to load or break.")
@@ -375,7 +375,7 @@ local fake_pickup_types <const> = {
 
 --########################################################
 
-	funfun = menu.list(menu.my_root(), "Fun Shit", {}, "", function(); end)
+	funfun = menu.list(menu.my_root(), "Fun Stuff", {}, "", function(); end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	menu.divider(funfun, "Fun Shit")
@@ -798,7 +798,7 @@ function SET_HEADING(Heading)
     ENTITY.SET_ENTITY_HEADING(players.user_ped(), Heading)
 end
 
-function format_int(number) -- Credits to Bart Kiers from stackoverflow
+function format_int(number)
   local i, j, minus, int, fraction = tostring(number):find('([-]?)(%d+)([.]?%d*)')
   int = int:reverse():gsub("(%d%d%d)", "%1,")
   return minus .. int:reverse():gsub("^,", "") .. fraction
@@ -898,7 +898,7 @@ function table.load( sfile )
 end
 -- END UTILITY FUNCTIONS
 
-store_dir = filesystem.store_dir() .. '\\Currupt\\'
+store_dir = filesystem.store_dir() .. '\\Naziscript_store\\'
 if not filesystem.is_dir(store_dir) then
     filesystem.mkdirs(store_dir)
 end
@@ -916,7 +916,7 @@ function create_timer_entry(data)
     local this_timer_path = store_dir .. '\\' .. timer_name .. '.lua'
     local fmt_name = timer_name:gsub(' ', '')
     if all_timer_lists[timer_name] == nil then
-        local this_timer_root = menu.list(menu.my_root(), timer_name, {'Currupt' .. fmt_name}, timer_desc)
+        local this_timer_root = menu.list(menu.my_root(), timer_name, {'Naziscript_store' .. fmt_name}, timer_desc)
         all_timer_lists[timer_name] = this_timer_root
         menu.toggle_loop(this_timer_root, "Run timer", {"runtimer" .. timer_name}, "", function(click_type)
             menu.trigger_commands(timer_commands)
@@ -1029,7 +1029,7 @@ local resource_dir = filesystem.resources_dir()
 if not filesystem.exists(resource_dir) then
 	util.toast("resource directory not found. notification system will be less of a bruh")
 else
-	util.register_file(resource_dir .. "bruhzowski.ytd")
+	util.register_file(resource_dir .. "naziload.ytd")
 end
 
 
@@ -1053,7 +1053,7 @@ function notification(message, color)
 	if not filesystem.exists(resource_dir) then
 		picture = "CHAR_SOCIAL_CLUB"
 	else
-		picture = "bruhzowski"
+		picture = "naziload"
 	end
 	GRAPHICS.REQUEST_STREAMED_TEXTURE_DICT(picture, 1)
 	while not GRAPHICS.HAS_STREAMED_TEXTURE_DICT_LOADED(picture) do
@@ -1079,7 +1079,7 @@ function notificationn(message, color)
 	if not filesystem.exists(resource_dir) then
 		picture = "CHAR_SOCIAL_CLUB"
 	else
-		picture = "bruhzowski"
+		picture = "naziload"
 	end
 	GRAPHICS.REQUEST_STREAMED_TEXTURE_DICT(picture, 1)
 	while not GRAPHICS.HAS_STREAMED_TEXTURE_DICT_LOADED(picture) do
@@ -1289,7 +1289,7 @@ function upgrade_vehicle(player) --now my funky functions are useless :'( since 
 			end
 		end
 		VEHICLE.SET_VEHICLE_XENON_LIGHT_COLOR_INDEX(vehicle, 255, 0, 255)
-		VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(vehicle, "Currupt")
+		VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(vehicle, "NAZI")
 	end
 end
 
@@ -5112,7 +5112,7 @@ GenerateFeatures = function(pid)
                         NETWORK.NETWORK_REQUEST_CONTROL_OF_ENTITY(playerVehicle)
                         VEHICLE.SET_VEHICLE_CHEAT_POWER_INCREASE(playerVehicle, player_torque/1000000)
 	      VEHICLE.MODIFY_VEHICLE_TOP_SPEED(vehicle, -2147483647)
-                    util.toast("Restart Currupt Script To Reset Your Own Speed")
+                    util.toast("Restart NaziScript To Reset Your Own Speed")
                     end
                     return (player_torques ~= 1000000)
                 end)
@@ -8363,7 +8363,7 @@ end)
 
 	local trolly_vehicles = menu.list(griefing, "Trolly Vehicles")
 
-	function set_ent_face_ent(ent1, ent2) --All credits to Ren for suggesting me this function
+	function set_ent_face_ent(ent1, ent2)
 		local pos1 = ENTITY.GET_ENTITY_COORDS(ent1)
 		local pos2 = ENTITY.GET_ENTITY_COORDS(ent2)
 		local dx = pos2.x - pos1.x
@@ -14427,15 +14427,33 @@ end)
 
 
 
-menu.action(menu.my_root(), "Changed by Doctor.V", {"none"}, "", function()
-end)
-commandalias = menu.list(menu.my_root(), "Commands", {}, "", function(); end)
+
+commandalias = menu.list(menu.my_root(), "Commands Shortcuts", {}, "", function(); end)
 
 menu.action(commandalias, ("Reapir"), {"fix"}, ("Quick Fix"), function()
 util.yield(10)
 menu.trigger_commands("repairvehicle")
 util.toast("Fixed!")
 end)
+
+credits = menu.list(menu.my_root(), "Credits", {}, "", function(); end)
+-- ADD HYPERLINK
+menu.action(credits, ("Haydeen"), {}, ("Thanks alot to Haydeen for getting the name DarkSkinGae\nThe GOAT"), function()
+util.toast("Thanks alot.")
+end)
+
+menu.action(credits, ("Bigboislaps124"), {}, ("Thanks alot to Bigboislaps124 for being GAE and testing the script."), function()
+util.toast("Thanks alot.")
+end)
+
+menu.action(credits, ("DubzMK"), {}, ("Thanks alot to DubzMK for testing and debug."), function()
+util.toast("Thanks alot.")
+end)
+
+menu.divider(menu.my_root(), "Changed by Doctor.V", {"none"}, "", function()
+end)
+
+
 --------------------------------------
 
 focusref = {}
