@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.50 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.51 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -11063,6 +11063,11 @@ end)
 local clothescrash = menu.list(lobbycrash, "Component Crash", {}, "")
 
 menu.action(clothescrash, "Component Crash", {"clothescrash"}, "Warning! Toggle Panic Mode First!", function()
+		menu.trigger_command("panic")
+		util.toast("PANIC ENABLED")
+		util.toast("Starting CRASH")
+		util.toast("Wait 2 seconds.")
+		util.yield(2000)
         if pid ~= players.user() then
             util.toast("Wait 20 Seconds...")
             local math_random = math.random
@@ -12161,6 +12166,11 @@ end)
 
 menu.toggle_loop(clothescrash, "Small Component Crash", {"smallclothescrash"}, "Warning! Toggle Panic Mode First!", function(on_toggle)
     notification("Small Component Crash sent to " .. PLAYER.GET_PLAYER_NAME(pids), colors.red)
+		menu.trigger_command("panic")
+		util.toast("PANIC ENABLED")
+		util.toast("Starting CRASH")
+		util.toast("Wait 2 seconds.")
+		util.yield(2000)
         local math_random = math.random
         local joaat = util.joaat
         util.yield(100)
