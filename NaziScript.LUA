@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.35 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.40 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -67,7 +67,7 @@ local PlaySound = aalib.play_sound
 local SND_ASYNC<const> = 0x0001
 local SND_FILENAME<const> = 0x00020000
 
-resources_dir = filesystem.resources_dir() .. '\\naziscript\\'
+resources_dir = filesystem.resources_dir() .. '\\curruptscript\\'
 
 if not filesystem.is_dir(resources_dir) then
     notification("If NaziScript is not installed properly. Some things will fail to load or break.")
@@ -898,7 +898,7 @@ function table.load( sfile )
 end
 -- END UTILITY FUNCTIONS
 
-store_dir = filesystem.store_dir() .. '\\Nazi\\'
+store_dir = filesystem.store_dir() .. '\\Currupt\\'
 if not filesystem.is_dir(store_dir) then
     filesystem.mkdirs(store_dir)
 end
@@ -916,21 +916,21 @@ function create_timer_entry(data)
     local this_timer_path = store_dir .. '\\' .. timer_name .. '.lua'
     local fmt_name = timer_name:gsub(' ', '')
     if all_timer_lists[timer_name] == nil then
-        local this_timer_root = menu.list(menu.my_root(), timer_name, {'Nazi' .. fmt_name}, timer_desc)
+        local this_timer_root = menu.list(menu.my_root(), timer_name, {'Currupt' .. fmt_name}, timer_desc)
         all_timer_lists[timer_name] = this_timer_root
         menu.toggle_loop(this_timer_root, "Run timer", {"runtimer" .. timer_name}, "", function(click_type)
             menu.trigger_commands(timer_commands)
             util.yield(timer_delay)
         end)
 
-        menu.text_input(this_timer_root, "Description", {"Nazisetdesc" .. fmt_name}, "", function(on_input)
+        menu.text_input(this_timer_root, "Description", {"Curruptsetdesc" .. fmt_name}, "", function(on_input)
             timer_desc = on_input
             data_copy['timer_desc'] = on_input
             table.save(data_copy, this_timer_path)
             menu.set_help_text(this_timer_root, timer_desc)
         end, timer_desc)
 
-        menu.text_input(this_timer_root, "Command(s)", {"Nazisetcommands" .. fmt_name}, "The commands for this timer. You can specify multiple by putting semicolons in between each.", function(on_input)
+        menu.text_input(this_timer_root, "Command(s)", {"Curruptsetcommands" .. fmt_name}, "The commands for this timer. You can specify multiple by putting semicolons in between each.", function(on_input)
             timer_commands = on_input
             data_copy['timer_commands'] = on_input
             table.save(data_copy, this_timer_path)
@@ -1289,7 +1289,7 @@ function upgrade_vehicle(player) --now my funky functions are useless :'( since 
 			end
 		end
 		VEHICLE.SET_VEHICLE_XENON_LIGHT_COLOR_INDEX(vehicle, 255, 0, 255)
-		VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(vehicle, "Nazi")
+		VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(vehicle, "Currupt")
 	end
 end
 
@@ -2692,7 +2692,7 @@ local chaos, gravity, speed = false, true, 100
 			if excludeselected then
 				if pids ~= players.user() and not selectedplayer[pids] and players.exists(pids) then
 					menu.trigger_commands("steamroll" .. PLAYER.GET_PLAYER_NAME(pids))
-					notificationn("Ha Nazi Crash has been sent to " .. PLAYER.GET_PLAYER_NAME(pids), colors.red)
+					notificationn("Ha Currupt Crash has been sent to " .. PLAYER.GET_PLAYER_NAME(pids), colors.red)
 				end
 			else
 				if pids ~= players.user() and selectedplayer[pids] and players.exists(pids) then
@@ -3452,7 +3452,7 @@ end)
 
 menu.action(help2, "Commands B", {"help2"}, "", function()
     chat.send_message(
-        "/boost NAME /naziboost NAME /resetacc NAME /repair NAME /invon NAME /invoff NAME",
+        "/boost NAME /curruptboost NAME /resetacc NAME /repair NAME /invon NAME /invoff NAME",
         false, -- in team chat
         true, -- add to local history
         true  -- networked
@@ -3462,7 +3462,7 @@ end, nil, nil, COMMANDPERM_FRIENDLY)
 
 menu.toggle_loop(help2, "Commands B", {}, "", function(on_toggle)
     chat.send_message(
-        "/boost NAME /Naziboost NAME /resetacc NAME /repair NAME /invon NAME /invoff NAME",
+        "/boost NAME /curruptboost NAME /resetacc NAME /repair NAME /invon NAME /invoff NAME",
         false, -- in team chat
         true, -- add to local history
         true  -- networked
@@ -5074,7 +5074,7 @@ GenerateFeatures = function(pid)
 		end
     end, nil, nil, COMMANDPERM_FRIENDLY)
 
-	menu.action(mov_sub_vehicle_tab,"Nazi boost", {"naziboosts"}, "Sets max speed of vehicle to 9999999 better for bikes",function()
+	menu.action(mov_sub_vehicle_tab,"Currupt boost", {"curruptboosts"}, "Sets max speed of vehicle to 9999999 better for bikes",function()
 		local vehicle = get_player_veh(pid,true)
 		if vehicle then
 			VEHICLE.MODIFY_VEHICLE_TOP_SPEED(vehicle, 9999999) 
@@ -5101,7 +5101,7 @@ GenerateFeatures = function(pid)
                 end)
             end, nil, nil, COMMANDPERM_FRIENDLY)
 
-            	menu.action(mov_sub_vehicle_tab, 'Reverse Car', {'reversecars'}, "Note: Restart Nazi Script if you need to reset your own speed",function()
+            	menu.action(mov_sub_vehicle_tab, 'Reverse Car', {'reversecars'}, "Note: Restart Currupt Script if you need to reset your own speed",function()
     	notification("Reverse Car On " .. PLAYER.GET_PLAYER_NAME(pids), colors.green)
 	local vehicle = get_player_veh(pid,true)
             	local player_torques = 1000000
@@ -5112,7 +5112,7 @@ GenerateFeatures = function(pid)
                         NETWORK.NETWORK_REQUEST_CONTROL_OF_ENTITY(playerVehicle)
                         VEHICLE.SET_VEHICLE_CHEAT_POWER_INCREASE(playerVehicle, player_torque/1000000)
 	      VEHICLE.MODIFY_VEHICLE_TOP_SPEED(vehicle, -2147483647)
-                    util.toast("Restart NaziScript To Reset Your Own Speed")
+                    util.toast("Restart Currupt Script To Reset Your Own Speed")
                     end
                     return (player_torques ~= 1000000)
                 end)
@@ -8887,7 +8887,7 @@ function spawn_buzzard(pid, gunner_weapon, collision)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
-        crash = menu.list(menu.player_root(pid), "Crashes", {}, "Nazi Crash", function(); end)
+        crash = menu.list(menu.player_root(pid), "Crashes", {}, "Currupt Crash", function(); end)
         kick = menu.list(menu.player_root(pid), "Kicks", {}, "Network Bail", function(); end)
 
         menu.action(kick, "Blast Kick", {"blast"}, "Blocks the player join reaction then uses buttplug kick", function()
