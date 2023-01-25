@@ -8,7 +8,7 @@ guidedMissile = require("guided_missile")
 
 
 local response = false
-local localVer = 1.40 -- CHECK VERSION WITH ScriptVersion Github
+local localVer = 1.42 -- CHECK VERSION WITH ScriptVersion Github
 local currentVer
 async_http.init("raw.githubusercontent.com", "/TheRealDoctorV/Testing-script/main/ScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -46,13 +46,13 @@ util.toast("Hello," .. SOCIALCLUB.SC_ACCOUNT_INFO_GET_NICKNAME() .. "! \nWelcome
     })
 
 local festive_div = menu.divider(menu.my_root(), "Nazi Script")
-local loading_frames = {'$', '$ $', '$ $ $', '$ $ $ $', '$ $ $ $ $ $ $ $ $ ', '$ $ $ $', '$ $ $', '$ $', '$'}
-util.create_tick_handler(function()
-    for _, frame in pairs(loading_frames) do
-        menu.set_menu_name(festive_div, frame .. ' ' .. translations.Nazi_Script .. ' ' .. frame)
-        util.yield(200)
-    end
-end)
+-- local loading_frames = {'$', '$ $', '$ $ $', '$ $ $ $', '$ $ $ $ $ $ $ $ $ ', '$ $ $ $', '$ $ $', '$ $', '$'}
+-- util.create_tick_handler(function()
+--     for _, frame in pairs(loading_frames) do
+--         menu.set_menu_name(festive_div, frame .. ' ' .. translations.Nazi_Script .. ' ' .. frame)
+--         util.yield(200)
+--     end
+-- end)
 
 local function show_busyspinner(text)
     HUD.BEGIN_TEXT_COMMAND_BUSYSPINNER_ON("STRING")
@@ -2519,7 +2519,7 @@ end
 
 local chaos, gravity, speed = false, true, 100
 
-	menu.divider(custselc, "Acts")
+	menu.divider(custselc, "Actions")
 
 	menu.action(custselc, "Vehicle Kick", {}, "", function()
     	notificationn("Ooopsy vehicle kicked " .. PLAYER.GET_PLAYER_NAME(pids), colors.red)
@@ -4947,26 +4947,26 @@ GenerateFeatures = function(pid)
 	-- HUD.BUSYSPINNER_OFF() -- Use to end Spinnner
 	-- show_busyspinner(text) -- {TEXT - String } -- Displays as text or string
 
-	menu.toggle(troll_sub_vehicle_tab, "Stealth Remote Control", {"stealthremote"}, "Enters there vehicle without them knowing and exits the same way. Note: It will disable them using that car until spawned again.", function(on_toggle)
-	if on_toggle then
-	 -- menu.trigger_commands("tpmyspot")
-		menu.trigger_commands("invisibility" .. " On")
-		menu.trigger_commands("otr" .. " On")
-		util.toast("Player is now invisible and OTF")
-		util.yield(2000)
-		menu.trigger_commands("tpveh" .. players.get_name(pid))
-		util.toast("Teleported to vehicle \nAttempting Remote-Control!")
-		util.yield(2000)
-		menu.trigger_commands("rc" .. " On")
-		util.toast("Remote-Control Granted on: " .. players.get_name(pid) .."")
-	else
-		menu.trigger_commands("rc" .. " Off")
-		menu.trigger_commands("undoteleport")
-        menu.trigger_commands("otr" .. " Off")
-		menu.trigger_commands("invisibility" .. " Off")
-		util.toast("Back to normal")
-		end
-	end)
+-- 	menu.toggle(troll_sub_vehicle_tab, "Stealth Remote Control", {"stealthremote"}, "Enters there vehicle without them knowing and exits the same way. Note: It will disable them using that car until spawned again.", function(on_toggle)
+-- 	if on_toggle then
+-- 	 -- menu.trigger_commands("tpmyspot")
+-- 		menu.trigger_commands("invisibility" .. " On")
+-- 		menu.trigger_commands("otr" .. " On")
+-- 		util.toast("Player is now invisible and OTF")
+-- 		util.yield(2000)
+-- 		menu.trigger_commands("tpveh" .. players.get_name(pid))
+-- 		util.toast("Teleported to vehicle \nAttempting Remote-Control!")
+-- 		util.yield(2000)
+-- 		menu.trigger_commands("rc" .. " On")
+-- 		util.toast("Remote-Control Granted on: " .. players.get_name(pid) .."")
+-- 	else
+-- 		menu.trigger_commands("rc" .. " Off")
+-- 		menu.trigger_commands("undoteleport")
+--         menu.trigger_commands("otr" .. " Off")
+-- 		menu.trigger_commands("invisibility" .. " Off")
+-- 		util.toast("Back to normal")
+-- 		end
+-- 	end)
 
 
     local plates = menu.list(troll_sub_vehicle_tab, "Fuck Plates", {}, "")
@@ -9262,12 +9262,12 @@ menu.action(frienm, "Send Message", {"Sendmessage"}, "Input the text for your pr
 end)
 ]]
 
-	menu.action(frienm,"Drift Mode", {"driftmode"}, "",function()
-		local vehicle = get_player_veh(pid,true)
-		if vehicle then
-			VEHICLE.SET_VEHICLE_REDUCE_GRIP(vehicle, 100)
-		end
-	end, nil, nil, COMMANDPERM_FRIENDLY)
+--	menu.action(frienm,"Drift Mode", {"driftmode"}, "",function()
+--		local vehicle = get_player_veh(pid,true)
+--		if vehicle then
+--			VEHICLE.SET_VEHICLE_REDUCE_GRIP(vehicle, 100)
+--		end
+--	end, nil, nil, COMMANDPERM_FRIENDLY)
 
 
 	menu.action(frienm,"Boost", {"boost"}, "Sets max speed of vehicle to 100 better for cars",function()
@@ -9297,11 +9297,17 @@ end)
 		util.yield(200)
 		menu.trigger_commands("fixvehicle")
    end)
+   
+   -- HUD.BUSYSPINNER_OFF() -- Use to end Spinnner
+-- show_busyspinner(text) -- {TEXT - String } -- Displays as text or string
 
 
-	menu.action(frienm,"GodVeh On", {"invon"}, "Gives invincibility to player's vehicle",function()
+
+	menu.action(frienm,"Vehicle Godmode On", {"cinvon"}, "Gives invincibility to player's vehicle",function()
 		local vehicle = get_player_veh(pid,true)
 		if vehicle then	
+		show_busyspinner("Turning on vehicle godmode for " .. PLAYER.GET_PLAYER_NAME(pid) .. "")
+		util.yield(2000)
 			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, true)
 			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, true)
 			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, true)
@@ -9316,28 +9322,36 @@ end)
 			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, true)
 			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, true)
 			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, true)
+			HUD.BUSYSPINNER_OFF()
+			util.yield(500)
+			util.toast("Vehicle Godmode enabled for: " .. PLAYER.GET_PLAYER_NAME(pid) .. "")
 		end
 	end, nil, nil, COMMANDPERM_FRIENDLY)
 
-	menu.action(frienm,"GodVeh Off", {"invoff"}, "Removes invincibility from player's vehicle",function()
-		local vehicle = get_player_veh(pid,true)
-		if vehicle then	
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-			ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
-		end
-	end, nil, nil, COMMANDPERM_FRIENDLY)
+menu.action(frienm,"Vehicle Godmode Off", {"cinvoff"}, "Removes invincibility from player's vehicle",function()
+	local vehicle = get_player_veh(pid,true)
+	if vehicle then	
+	show_busyspinner("Turning off vehicle godmode for " .. PLAYER.GET_PLAYER_NAME(pid) .. "")
+		util.yield(2000)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		ENTITY.SET_ENTITY_INVINCIBLE(vehicle, false)
+		HUD.BUSYSPINNER_OFF()
+		util.yield(500)
+		util.toast("Vehicle Godmode disabled for: " .. PLAYER.GET_PLAYER_NAME(pid) .. "")
+	end
+end, nil, nil, COMMANDPERM_FRIENDLY)
 
     menu.toggle(frienm,"Commend Spam", {}, "Sends all types of commends its good for a player if they have been reported alot, may lag your game when in progress.", function(on)
 		spam = on
