@@ -12215,7 +12215,7 @@ menu.toggle_loop(clothescrash, "Small Component Crash", {"smallclothescrash"}, "
         end
         util.yield(500)
         for i = 1, ped_amount do
-            entities.delete(SpawnedPeds1[i])
+            entities.delete_by_handle(SpawnedPeds1[i])
             util.yield(5)
             end
     end)
