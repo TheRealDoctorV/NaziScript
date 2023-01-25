@@ -2604,7 +2604,7 @@ local chaos, gravity, speed = false, true, 100
 		end
 	end)
 
-    menu.action(custselc, "(TP) Bring Players", {"tpplayers"}, "", function()
+    menu.action(custselc, "(TP) Bring Players", {"tpplayersall"}, "", function()
 		for pids = 0, 31 do
 			if excludeselected then
 				if pids ~= players.user() and not selectedplayer[pids] and players.exists(pids) then
@@ -5440,7 +5440,7 @@ local usingRape = false
         util.toast("Give them a second to get on...")
         util.yield(10000)
         excludeselected = true
-        menu.trigger_commands("tpplayers")
+        menu.trigger_commands("tpplayersall")
     end, nil, nil, COMMANDPERM_AGGRESSIVE)
 
     menu.action(griefingtp, "TP All Players Near me", {"tpallnear"}, "Teleports all players near you.", function()
